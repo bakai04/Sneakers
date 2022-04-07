@@ -7,7 +7,7 @@ function Drawer({onClosecart, items=[]}){
             </h2>
             <div className="items">
               {
-              items.map((obj, index) => (    
+              items.map((obj, index) => (     
               <div className="cartItem d-flex align-center">
                 <div
                   style={{ backgroundImage: `url(${obj.imgUrl})`}}

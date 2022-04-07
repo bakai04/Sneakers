@@ -1,13 +1,12 @@
 import React, {useState,useEffect} from "react";
-import Card from "./components/Cards"
+import Cards from "./components/Cards"
 import Header from "./components/Header"
 import Drawer from "./components/Drawer";
 
 function App() {
   const [openCart, setOpenCart]=useState(false);
   const [items, setItems]=useState([]);
-  const [CartItem, setCartItem]=useState([]);  
-  let arr=[];
+  const [CartItems, setCartItems]=useState([]);  
   
   
   useEffect(()=>{
@@ -18,11 +17,13 @@ function App() {
     });
   },[]);
 
-
-
+const onAddToCart=(obj)=>{
+  setCartItems([...CartItems, obj]);
+  console.log(CartItems);
+}
   return(
 <div className="wrapper clear">
-  {openCart ? <Drawer onClosecart={()=>setOpenCart(false)}CartItem={CartItem}/>: null}
+  {openCart ? <Drawer onClosecart={()=>setOpenCart(false)} items={CartItems}/>: null}
   <Header onClickcart={()=>setOpenCart(true)} />
 <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
@@ -33,17 +34,13 @@ function App() {
           </div>
         </div>
     <div className="d-flex flex-wrap">
-      {items.map((obj, index) => (
-        <Card 
-          title={obj.title}
-          price={obj.price}
-          imgUrl={obj.imgUrl}
-          key={index}
-          onClickFavorite={()=>console.log("df")}
-          onClickPlus={()=>{
-            // arr=[...arr, obj];
-            setCartItem([...CartItem, obj]);
-          }}
+      {items.map((item, index) => (
+        <Cards
+          title={item.title}
+          price={item.price}
+          imgUrl={item.imgUrl}
+          onFavorite={() => console.log('Добавили в закладки')}
+          onPlus={(obj) => (onAddToCart(obj))}
         />
       ))}
     </div>

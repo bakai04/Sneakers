@@ -1,22 +1,21 @@
-function Drawer(props){
+function Drawer({onClosecart, items=[]}){
     return (
         <div className="overlay">
           <div className="drawer">
             <h2 className="d-flex justify-between mb-30 align-center">
-              Корзина <img onClick={props.onClosecart} className="cu-p" width={11} height={11} src="/img/remove.png" alt="Remove" />
+              Корзина <img onClick={onClosecart} className="cu-p" width={11} height={11} src="/img/remove.png" alt="Remove" />
             </h2>
-            {console.log(props.CartItem)}
             <div className="items">
               {
-              props.CartItem.map((item, index) => (    
+              items.map((obj, index) => (    
               <div className="cartItem d-flex align-center">
                 <div
-                  style={{ backgroundImage: `url(${item.imgUrl})`}}
+                  style={{ backgroundImage: `url(${obj.imgUrl})`}}
                   className="cartItemImg"></div>
     
                 <div className="mr-20 flex">
-                  <p className="mb-5">{item.title}</p>
-                  <b>{item.price} руб.</b>
+                  <p className="mb-5">{obj.title}</p>
+                  <b>{obj.price} руб.</b>
                 </div>
                 <img className="removeBtn" src="/img/remove.png" alt="Remove" />
               </div>

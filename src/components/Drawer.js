@@ -7,11 +7,10 @@ function Drawer({ onClosecart, items = [], onRemove }) {
         </h2>
         {
           items.length > 0 ? <div className="items">
-            <div>
-              {
+            <div className="d-flex flex-column flex">
+                {
                 items.map((obj, index) => (
-                  <div>
-                  <div className="cartItem d-flex align-center">
+                  <div key={obj.id} className="cartItem d-flex align-center">
                     <div
                       style={{ backgroundImage: `url(${obj.imgUrl})` }}
                       className="cartItemImg"></div>
@@ -21,7 +20,6 @@ function Drawer({ onClosecart, items = [], onRemove }) {
                       <b>{obj.price} руб.</b>
                     </div>
                     <img onClick={() => onRemove(obj.id)} className="removeBtn" src="/img/remove.png" alt="Remove" />
-                  </div>
                   </div>
                 ))}
               <div className="cartTotalBlock">

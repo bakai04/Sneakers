@@ -14,11 +14,10 @@ function Home({
   const {isItemAdded}=useContext(AppContext);
   const renderItems=()=>{
     const filtredItems = items.filter((item)=> item.title.toLowerCase().includes(SearchValue.toLowerCase()))
-    console.log(filtredItems);
     return (isLoading ? [...Array(12)]:filtredItems).map((item, index) => (
         <Cards
           onFavorite={(obj) => (onAddToFavorites(obj))}
-          onPlus={(obj) => (onAddToCart(obj))}
+          onPlus={(obj) => onAddToCart(obj)}
           key={index}
           loading={isLoading}
           {...item}
